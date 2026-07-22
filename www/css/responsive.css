@@ -1,0 +1,147 @@
+/* ==========================================
+   PROJECT: AL-MOHAQIQ (المحقق) - NOIR DETECTIVE UI
+   FILE: responsive.css
+   DESCRIPTION: Dynamic Desktop-First Scaling (1920px down to 1280px)
+   WITHOUT ANY VERTICAL SCROLLBAR
+========================================== */
+
+/* Ultra High Definition / 1080p Desktop (1920px to 1600px) */
+@media screen and (min-width: 1600px) {
+    .app-container {
+        max-width: 1600px;
+        height: 90vh;
+    }
+    
+    .brand-title { font-size: 24px; }
+    .nav-btn { font-size: 15px; padding: 14px 18px; }
+    .card-header h2 { font-size: 17px; }
+    .case-description { font-size: 14px; }
+    .stat-number { font-size: 24px; }
+}
+
+/* Standard Desktop / Laptop (1440px to 1599px) */
+@media screen and (max-width: 1599px) and (min-width: 1367px) {
+    .app-container {
+        width: 96%;
+        height: 92vh;
+        margin: 4vh auto;
+    }
+
+    .app-dashboard {
+        grid-template-columns: 220px 1fr;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+    .workspace {
+        gap: 15px;
+    }
+
+    .noir-card {
+        padding: 15px;
+    }
+}
+
+/* Compact Laptop Displays (1280px to 1366px) */
+@media screen and (max-width: 1366px) {
+    .app-container {
+        width: 98%;
+        height: 96vh;
+        margin: 2vh auto;
+        border-radius: var(--radius-lg);
+    }
+
+    .app-header {
+        height: 60px;
+        padding: 0 20px;
+    }
+
+    .brand-title {
+        font-size: 18px;
+    }
+
+    .brand-badge {
+        font-size: 22px;
+    }
+
+    .app-dashboard {
+        grid-template-columns: 190px 1fr;
+        gap: 12px;
+        padding: 12px 15px;
+    }
+
+    .sidebar-nav {
+        padding: 10px;
+    }
+
+    .nav-btn {
+        padding: 9px 12px;
+        font-size: 12px;
+    }
+
+    .workspace {
+        gap: 12px;
+    }
+
+    .noir-card {
+        padding: 12px;
+    }
+
+    .card-header h2 {
+        font-size: 13px;
+    }
+
+    .case-description {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .stat-number {
+        font-size: 16px;
+    }
+
+    .stat-label {
+        font-size: 10px;
+    }
+
+    .suspect-avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+
+    .suspect-info h3 {
+        font-size: 12px;
+    }
+
+    .btn {
+        padding: 9px;
+        font-size: 12px;
+    }
+
+    .app-footer {
+        height: 38px;
+        padding: 0 20px;
+        font-size: 11px;
+    }
+}
+
+/* Aspect Ratio Safety Net for Ultra-wide / Smaller Heights */
+@media screen and (max-height: 768px) {
+    .app-container {
+        height: 98vh;
+        margin: 1vh auto;
+    }
+
+    .quick-stats {
+        margin-top: 8px;
+    }
+
+    .suspects-grid {
+        gap: 6px;
+    }
+
+    .suspect-item {
+        padding: 6px 10px;
+    }
+}

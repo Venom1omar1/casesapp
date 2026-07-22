@@ -1,117 +1,250 @@
+<!-- ==========================================
+     PROJECT: AL-MOHAQIQ (المحقق) - NOIR DETECTIVE UI
+     FILE: index.html
+     DESCRIPTION: Main Interface Document (RTL)
+========================================== -->
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#080705">
-    <title>المحقق - بوابتك للتحقيق</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحقق | نظام التحقيقات الجنائية</title>
     
-    <!-- خط القاهرة + خط عربي فخيم للعناوين -->
+    <!-- Google Fonts: Cairo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="desktop.css">
+    <link rel="stylesheet" href="responsive.css">
 </head>
-
 <body>
 
-    <!-- 🌌 الخلفية (سيبنا المكان ده عشان تحط الصورة بتاعتك) -->
-    <div class="cinematic-bg">
-        <div class="vignette"></div>
-        <canvas id="particles-canvas"></canvas>
-    </div>
+    <!-- Main Noir Viewport Container -->
+    <div class="app-container">
+        
+        <!-- Multi-layered CSS Noir Background -->
+        <div class="bg-layer bg-texture"></div>
+        <div class="bg-layer bg-watermark"></div>
+        <div class="bg-layer bg-vignette"></div>
+        <div class="bg-layer bg-noise"></div>
+        <div class="bg-layer bg-spotlight"></div>
 
-    <!-- 📱 تحذير قلب الشاشة -->
-    <div id="rotate-warning">
-        <div class="warning-content">
-            <div class="rotate-icon">📱</div>
-            <p class="rotate-text">اقلب الموبايل بالعرض<br><span>عشان تبدأ التحقيق يا فنان!</span></p>
-        </div>
-    </div>
-
-    <!-- 👤 شاشة الولوج الرئيسية -->
-    <div id="auth-screen" class="screen active">
-
-        <div class="content-wrapper">
-            <!-- الهيدر واللوجو -->
-            <div class="title-wrapper">
-                <h1 class="game-title">المُحَقِّق</h1>
-                <div class="title-star"><span>🕮</span></div>
-                <p class="game-subtitle">لكل جريمة.. خيوط تقود للحقيقة</p>
+        <!-- System Header -->
+        <header class="app-header">
+            <div class="header-brand">
+                <i class="fa-solid fa-shield-halved brand-badge"></i>
+                <div class="brand-text">
+                    <h1 class="brand-title">المحقق</h1>
+                    <span class="brand-subtitle">نظام إدارة القضايا والتحقيقات الجنائية</span>
+                </div>
             </div>
+            
+            <div class="header-status">
+                <div class="status-item">
+                    <span class="status-label">القضية الحالية:</span>
+                    <span class="status-value highlight">#8042 - لغز شقة الزمالك</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">المحقق المسؤول:</span>
+                    <span class="status-value">عمر إبراهيم</span>
+                </div>
+                <div class="status-item status-live">
+                    <span class="live-indicator"></span>
+                    <span>اتصال آمن بالمركز</span>
+                </div>
+            </div>
+        </header>
 
-            <!-- الكروت الثلاثة الأفقية بنفس ترتيب صورتك بالظبط -->
-            <div id="auth-main-options" class="auth-buttons-row">
+        <!-- Main Content Dashboard Grid -->
+        <main class="app-dashboard">
+            
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar-nav">
+                <nav class="nav-menu">
+                    <button class="nav-btn active" data-tab="overview">
+                        <i class="fa-solid fa-folder-closed"></i>
+                        <span>ملف القضية</span>
+                    </button>
+                    <button class="nav-btn" data-tab="suspects">
+                        <i class="fa-solid fa-users-viewfinder"></i>
+                        <span>المشتبه بهم</span>
+                    </button>
+                    <button class="nav-btn" data-tab="evidence">
+                        <i class="fa-solid fa-magnifying-glass-location"></i>
+                        <span>الأدلة الجنائية</span>
+                    </button>
+                    <button class="nav-btn" data-tab="interrogations">
+                        <i class="fa-solid fa-comments"></i>
+                        <span>محاضر التحقيق</span>
+                    </button>
+                    <button class="nav-btn" data-tab="timeline">
+                        <i class="fa-solid fa-timeline"></i>
+                        <span>تسلسل الأحداث</span>
+                    </button>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <div class="case-level">
+                        <span class="level-title">درجة السرية</span>
+                        <span class="level-badge">سري للغاية</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Active Workspace Area -->
+            <section class="workspace">
                 
-                <!-- 1. إنشاء حساب (على اليمين) -->
-                <button class="auth-card-btn" onclick="showAuthForm('signup')">
-                    <div class="auth-icon-box">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
+                <!-- Section 1: Case Briefing & Highlights -->
+                <article class="noir-card case-summary-card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-file-contract"></i> تفاصيل الحادثة</h2>
+                        <span class="case-id">سجل رقم: EG-2026-991</span>
                     </div>
-                    <span class="auth-card-title">إنشاء حساب</span>
-                </button>
-
-                <!-- 2. تسجيل دخول (في النص) -->
-                <button class="auth-card-btn" onclick="showAuthForm('login')">
-                    <div class="auth-icon-box">
-                        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
+                    <div class="card-body">
+                        <p class="case-description">
+                            تم العثور على الجثة داخل المكتب المغلق في تمام الساعة 02:15 صباحاً. لا توجد آثار اقتحام خارجي. جميع المؤشرات الأولية تشير إلى وجود شخص من داخل الدائرة المقربة للمجني عليه.
+                        </p>
+                        <div class="quick-stats">
+                            <div class="stat-box">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">مشتبه بهم</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number">12</span>
+                                <span class="stat-label">دليل مادي</span>
+                            </div>
+                            <div class="stat-box">
+                                <span class="stat-number">85%</span>
+                                <span class="stat-label">نسبة اكتمال الملف</span>
+                            </div>
+                        </div>
                     </div>
-                    <span class="auth-card-title">تسجيل دخول</span>
-                </button>
+                </article>
 
-                <!-- 3. دخول كـ ضيف (على الشمال) -->
-                <button class="auth-card-btn" onclick="showAuthForm('guest')">
-                    <div class="auth-icon-box">
-                        <!-- أيقونة برنيطة المحقق/المخبر -->
-                        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2C9.24 2 7 4.24 7 7v1H4c-1.1 0-2 .9-2 2v1c0 .55.45 1 1 1h18c.55 0 1-.45 1-1v-1c0-1.1-.9-2-2-2h-3V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v1H9V7c0-1.66 1.34-3 3-3zM3 16c0 2.21 4.03 4 9 4s9-1.79 9-4v2c0 2.21-4.03 4-9 4s-9-1.79-9-4v-2z"/>
-                        </svg>
+                <!-- Section 2: Suspect Profiles Grid -->
+                <article class="noir-card suspects-card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-user-ninja"></i> المشتبه بهم الرئيسيّون</h2>
+                        <button class="action-link"><i class="fa-solid fa-ellipsis-vertical"></i></button>
                     </div>
-                    <span class="auth-card-title">دخول كـ ضيف</span>
-                </button>
+                    <div class="card-body suspects-grid">
+                        <div class="suspect-item active">
+                            <div class="suspect-avatar">
+                                <i class="fa-solid fa-user-secret"></i>
+                            </div>
+                            <div class="suspect-info">
+                                <h3>د. طارق النحاس</h3>
+                                <p class="suspect-role">الشريك التجاري</p>
+                                <span class="threat-level high">دافع قوي</span>
+                            </div>
+                        </div>
 
+                        <div class="suspect-item">
+                            <div class="suspect-avatar">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <div class="suspect-info">
+                                <h3>سامر عبد العزيز</h3>
+                                <p class="suspect-role">المحامي الخاص</p>
+                                <span class="threat-level medium">موضع شبهة</span>
+                            </div>
+                        </div>
+
+                        <div class="suspect-item">
+                            <div class="suspect-avatar">
+                                <i class="fa-solid fa-user-nurse"></i>
+                            </div>
+                            <div class="suspect-info">
+                                <h3>منى الشاذلي</h3>
+                                <p class="suspect-role">السكرتيرة الخاصة</p>
+                                <span class="threat-level low">شاهد رئيسي</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Section 3: Evidence & Audio Log Inspection -->
+                <article class="noir-card evidence-card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-box-archive"></i> حرز الأدلة رقم #04</h2>
+                    </div>
+                    <div class="card-body evidence-details">
+                        <div class="evidence-preview">
+                            <i class="fa-solid fa-tape evidence-icon"></i>
+                            <div class="evidence-meta">
+                                <h3>شريط تسجيل مكالمة هاتفية</h3>
+                                <span class="timestamp"><i class="fa-regular fa-clock"></i> 14 يوليو 2026 - 11:42 مساءً</span>
+                            </div>
+                        </div>
+                        <div class="audio-player-sim">
+                            <button class="play-btn"><i class="fa-solid fa-play"></i></button>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="duration">02:45</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Section 4: Action Panel & Deductions -->
+                <article class="noir-card actions-card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-brain"></i> الإجراءات والاستنتاج</h2>
+                    </div>
+                    <div class="card-body action-buttons">
+                        <button class="btn btn-gold">
+                            <i class="fa-solid fa-gavel"></i>
+                            <span>إصدار أمر ضبط وإحضار</span>
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fa-solid fa-fingerprint"></i>
+                            <span>مطابقة البصمات</span>
+                        </button>
+                        <button class="btn btn-outline">
+                            <i class="fa-solid fa-building-shield"></i>
+                            <span>طلب تقرير الطب الشرعي</span>
+                        </button>
+                    </div>
+                </article>
+
+            </section>
+        </main>
+
+        <!-- Footer Control Bar -->
+        <footer class="app-footer">
+            <div class="footer-info">
+                <span>المملكة - وزارة الداخلية - قطاع الأمن العام</span>
             </div>
-
-            <!-- النوافذ المنبثقة للتسجيل (مخفية أوفلاين) -->
-            <div id="form-guest" class="auth-sub-form glass-card">
-                <div class="form-header"><h3>🕵️‍♂️ دخول كضيف</h3></div>
-                <input type="text" id="guest-name-input" placeholder="اكتب اسم المحقق..." class="auth-input">
-                <button class="btn-primary-gold" onclick="loginAsGuest()">ابدأ التحقيق</button>
-                <button class="btn-cancel" onclick="backToAuthMain()">⬅ رجوع</button>
+            <div class="footer-actions">
+                <button class="btn-icon" title="الإعدادات"><i class="fa-solid fa-gear"></i></button>
+                <button class="btn-icon" title="خريطة القضايا"><i class="fa-solid fa-map-location-dot"></i></button>
+                <button class="btn-icon danger" title="إغلاق الملف"><i class="fa-solid fa-power-off"></i></button>
             </div>
+        </footer>
 
-            <div id="form-signup" class="auth-sub-form glass-card">
-                <div class="form-header"><h3>🔑 إنشاء حساب</h3></div>
-                <input type="text" id="signup-fullname" placeholder="الاسم بالكامل" class="auth-input">
-                <input type="text" id="signup-username" placeholder="اسم المستخدم" class="auth-input">
-                <input type="password" id="signup-pass" placeholder="كلمة المرور" class="auth-input">
-                <button class="btn-primary-gold" onclick="handleServerRegister()">تسجيل الحساب</button>
-                <button class="btn-cancel" onclick="backToAuthMain()">⬅ رجوع</button>
-            </div>
-
-            <div id="form-login" class="auth-sub-form glass-card">
-                <div class="form-header"><h3>🔓 تسجيل الدخول</h3></div>
-                <input type="text" id="login-username" placeholder="اسم المستخدم" class="auth-input">
-                <input type="password" id="login-pass" placeholder="كلمة المرور" class="auth-input">
-                <button class="btn-primary-gold" onclick="handleServerLogin()">دخول</button>
-                <button class="btn-cancel" onclick="backToAuthMain()">⬅ رجوع</button>
-            </div>
-
-        </div>
     </div>
 
-    <!-- باقي الشاشات مخفية مؤقتاً لحد ما نخلص الشاشة دي -->
-    <div id="main-menu" class="screen hidden"></div>
-    <div id="profile-sync-screen" class="screen hidden"></div>
+    <!-- Interactivity Script -->
+    <script>
+        document.querySelectorAll('.nav-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
+        });
 
-    <script type="module" src="js/app.js"></script>
+        document.querySelectorAll('.suspect-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.suspect-item').forEach(s => s.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+    </script>
 </body>
-
 </html>

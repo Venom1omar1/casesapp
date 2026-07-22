@@ -39,20 +39,28 @@
         <div class="content-wrapper">
             <div class="title-wrapper">
                 <span class="classified-badge">🔒 CLASSIFIED ACCESS</span>
-                <h1 class="game-title glitch" data-text="بَوَّابَةُ التَّحْقِيقِ">بَوَّابَةُ التَّحْقِيقِ</h1>
+                <h1 class="game-title glitch" data-text="المُحَقِّقُ">المُحَقِّقُ</h1>
                 <div class="title-underline"></div>
-                <p class="game-subtitle">اختر طريقة الولوج لملفات المباحث السرية</p>
+                <p class="game-subtitle">لكل جريمة.. خيوط تقود للحقيقة</p>
             </div>
 
-            <div id="auth-main-options" class="menu-buttons">
-                <button class="btn-cyber glass-btn" onclick="showAuthForm('guest')"><span class="btn-icon">🕵️‍♂️</span>
-                    الدخول كـ ضيف (أوفلاين)</button>
-                <button class="btn-cyber glass-btn" onclick="showAuthForm('signup')"><span class="btn-icon">🔑</span>
-                    إنشاء حساب محقق جديد</button>
-                <button class="btn-cyber glass-btn" onclick="showAuthForm('login')"><span class="btn-icon">🔓</span>
-                    تسجيل دخول بحسابك</button>
+            <!-- أزرار الدخول الأفقية كروت -->
+            <div id="auth-main-options" class="auth-buttons-row">
+                <button class="auth-card-btn" onclick="showAuthForm('signup')">
+                    <span class="auth-card-icon">👤⁺</span>
+                    <span class="auth-card-title">إنشاء حساب</span>
+                </button>
+                <button class="auth-card-btn" onclick="showAuthForm('login')">
+                    <span class="auth-card-icon">👤</span>
+                    <span class="auth-card-title">تسجيل دخول</span>
+                </button>
+                <button class="auth-card-btn" onclick="showAuthForm('guest')">
+                    <span class="auth-card-icon">🕵️‍♂️</span>
+                    <span class="auth-card-title">دخول كـ ضيف</span>
+                </button>
             </div>
 
+            <!-- نماذج الإدخال الفرعية -->
             <div id="form-guest" class="auth-sub-form glass-card">
                 <div class="form-header"><span class="form-icon">🕵️‍♂️</span>
                     <h3>دخول كضيف</h3>
@@ -107,15 +115,11 @@
     </div>
 
     <!-- 👤 شاشة البروفايل -->
-    <!-- 👤 شاشة البروفايل -->
     <div id="profile-sync-screen" class="screen hidden">
-        <!-- أزرار التحكم العلوية (يمين ويسار) -->
         <button class="game-ui-btn top-left" onclick="switchScreen('profile-sync-screen', 'main-menu')">↩ رجوع</button>
         <button class="game-ui-btn top-right" onclick="openSettingsModal()">⚙️ الإعدادات</button>
 
         <div class="game-ui-container">
-
-            <!-- 1️⃣ بطاقة هوية المحقق -->
             <div class="detective-id-card">
                 <div class="id-avatar-wrapper">
                     <div class="id-avatar-ring"></div>
@@ -145,7 +149,6 @@
                 </div>
             </div>
 
-            <!-- 2️⃣ لوحة المعلومات (مضغوطة وأنيقة) -->
             <div class="ui-dashboard-grid">
                 <div class="ui-panel stats-panel">
                     <h3 class="panel-header">📊 الإحصائيات</h3>
@@ -178,9 +181,7 @@
                 </div>
             </div>
 
-            <!-- 3️⃣ المنطقة السفلى: الأزرار (ترقية + خروج) -->
             <div class="ui-footer-section">
-                <!-- زر الترقية يظهر فقط للضيوف -->
                 <div class="footer-actions-row">
                     <button id="btn-upgrade-guest" class="ui-action-btn primary" onclick="openUpgradeModal()"
                         style="display: none;">
@@ -191,12 +192,10 @@
                     </button>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- 🎯 Modal ترقية الحساب (العين داخل الانبوت) -->
-    <!-- 🎯 Modal ترقية الحساب (العين داخل الانبوت - منطق معكوس) -->
+    <!-- 🎯 Modal ترقية الحساب -->
     <div id="modal-upgrade" class="modal-overlay hidden">
         <div class="glass-card modal-content modal-wide">
             <button class="modal-close" onclick="closeModal('modal-upgrade')">✕</button>
@@ -207,11 +206,9 @@
                 <input type="text" id="sync-fullname" placeholder="الاسم الكامل" class="auth-input">
                 <input type="text" id="sync-username" placeholder="اسم المستخدم" class="auth-input">
 
-                <!-- حقل الباسورد -->
                 <div class="password-wrapper">
                     <input type="password" id="sync-pass" placeholder="كلمة المرور" class="auth-input">
                     <button type="button" class="toggle-password-btn" onclick="toggleBothPasswords(this)">
-                        <!-- أيقونة العين المغلقة (الافتراضية لأن الباسورد مخفي) -->
                         <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -220,7 +217,6 @@
                             </path>
                             <line x1="1" y1="1" x2="23" y2="23"></line>
                         </svg>
-                        <!-- أيقونة العين المفتوحة (مخفية افتراضياً) -->
                         <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round" style="display: none;">
@@ -230,7 +226,6 @@
                     </button>
                 </div>
 
-                <!-- حقل تأكيد الباسورد -->
                 <div class="password-wrapper">
                     <input type="password" id="sync-confirm-pass" placeholder="تأكيد كلمة المرور" class="auth-input">
                     <button type="button" class="toggle-password-btn" onclick="toggleBothPasswords(this)">
@@ -260,10 +255,6 @@
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════════════════
-     🔲 MODALS (النافذة المنبثقة للـ Popups)
-     ═══════════════════════════════════════════════════════════ -->
-
     <!-- 1. POPUP تعديل الاسم -->
     <div id="modal-edit-name" class="modal-overlay hidden">
         <div class="glass-card modal-content">
@@ -281,14 +272,13 @@
         </div>
     </div>
 
-    <!-- 2. POPUP الإعدادات (ترس) -->
+    <!-- 2. POPUP الإعدادات -->
     <div id="modal-settings" class="modal-overlay hidden">
         <div class="glass-card modal-content">
             <button class="modal-close" onclick="closeModal('modal-settings')">✕</button>
             <h3>⚙️ إعدادات النظام</h3>
 
             <div class="settings-toggle-list">
-                <!-- توغل الصوت -->
                 <div class="toggle-row">
                     <div class="toggle-info">
                         <span class="setting-icon">🔊</span>
@@ -300,7 +290,6 @@
                     </label>
                 </div>
 
-                <!-- توغل الاهتزاز -->
                 <div class="toggle-row">
                     <div class="toggle-info">
                         <span class="setting-icon">📳</span>

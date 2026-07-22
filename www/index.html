@@ -5,27 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#020408">
-    <title>ملفات الظل - تحقيق أوفلاين</title>
+    <meta name="theme-color" content="#080705">
+    <title>المحقق - بوابتك للتحقيق</title>
+    
+    <!-- خط القاهرة + خط عربي فخيم للعناوين -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Share+Tech+Mono&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-    <!-- 🌌 الخلفية السينمائية -->
+    <!-- 🌌 الخلفية (سيبنا المكان ده عشان تحط الصورة بتاعتك) -->
     <div class="cinematic-bg">
-        <div class="fog fog-1"></div>
-        <div class="fog fog-2"></div>
-        <div class="scanlines"></div>
         <div class="vignette"></div>
         <canvas id="particles-canvas"></canvas>
     </div>
 
-    <!-- 📱 شاشة تحذير القلب -->
+    <!-- 📱 تحذير قلب الشاشة -->
     <div id="rotate-warning">
         <div class="warning-content">
             <div class="rotate-icon">📱</div>
@@ -33,319 +32,84 @@
         </div>
     </div>
 
-    <!-- 👤 شاشة الولوج -->
+    <!-- 👤 شاشة الولوج الرئيسية -->
     <div id="auth-screen" class="screen active">
 
         <div class="content-wrapper">
+            <!-- الهيدر واللوجو -->
             <div class="title-wrapper">
-                <span class="classified-badge">🔒 CLASSIFIED ACCESS</span>
-                <h1 class="game-title glitch" data-text="المُحَقِّقُ">المُحَقِّقُ</h1>
-                <div class="title-underline"></div>
+                <h1 class="game-title">المُحَقِّق</h1>
+                <div class="title-star"><span>🕮</span></div>
                 <p class="game-subtitle">لكل جريمة.. خيوط تقود للحقيقة</p>
             </div>
 
-            <!-- أزرار الدخول الأفقية كروت -->
+            <!-- الكروت الثلاثة الأفقية بنفس ترتيب صورتك بالظبط -->
             <div id="auth-main-options" class="auth-buttons-row">
+                
+                <!-- 1. إنشاء حساب (على اليمين) -->
                 <button class="auth-card-btn" onclick="showAuthForm('signup')">
-                    <span class="auth-card-icon">👤⁺</span>
+                    <div class="auth-icon-box">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M15 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm-9-2V7H4v3H1v2h3v3h2v-3h3v-2H6zm9 4c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
                     <span class="auth-card-title">إنشاء حساب</span>
                 </button>
+
+                <!-- 2. تسجيل دخول (في النص) -->
                 <button class="auth-card-btn" onclick="showAuthForm('login')">
-                    <span class="auth-card-icon">👤</span>
+                    <div class="auth-icon-box">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
+                    </div>
                     <span class="auth-card-title">تسجيل دخول</span>
                 </button>
+
+                <!-- 3. دخول كـ ضيف (على الشمال) -->
                 <button class="auth-card-btn" onclick="showAuthForm('guest')">
-                    <span class="auth-card-icon">🕵️‍♂️</span>
+                    <div class="auth-icon-box">
+                        <!-- أيقونة برنيطة المحقق/المخبر -->
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C9.24 2 7 4.24 7 7v1H4c-1.1 0-2 .9-2 2v1c0 .55.45 1 1 1h18c.55 0 1-.45 1-1v-1c0-1.1-.9-2-2-2h-3V7c0-2.76-2.24-5-5-5zm0 2c1.66 0 3 1.34 3 3v1H9V7c0-1.66 1.34-3 3-3zM3 16c0 2.21 4.03 4 9 4s9-1.79 9-4v2c0 2.21-4.03 4-9 4s-9-1.79-9-4v-2z"/>
+                        </svg>
+                    </div>
                     <span class="auth-card-title">دخول كـ ضيف</span>
                 </button>
+
             </div>
 
-            <!-- نماذج الإدخال الفرعية -->
+            <!-- النوافذ المنبثقة للتسجيل (مخفية أوفلاين) -->
             <div id="form-guest" class="auth-sub-form glass-card">
-                <div class="form-header"><span class="form-icon">🕵️‍♂️</span>
-                    <h3>دخول كضيف</h3>
-                </div>
+                <div class="form-header"><h3>🕵️‍♂️ دخول كضيف</h3></div>
                 <input type="text" id="guest-name-input" placeholder="اكتب اسم المحقق..." class="auth-input">
-                <button class="btn-cyber glass-btn btn-primary" onclick="loginAsGuest()">ابدأ التحقيق فوراً 🚀</button>
+                <button class="btn-primary-gold" onclick="loginAsGuest()">ابدأ التحقيق</button>
                 <button class="btn-cancel" onclick="backToAuthMain()">⬅ رجوع</button>
             </div>
 
             <div id="form-signup" class="auth-sub-form glass-card">
-                <div class="form-header"><span class="form-icon">🔑</span>
-                    <h3>إنشاء حساب سحابي</h3>
-                </div>
+                <div class="form-header"><h3>🔑 إنشاء حساب</h3></div>
                 <input type="text" id="signup-fullname" placeholder="الاسم بالكامل" class="auth-input">
-                <input type="text" id="signup-username" placeholder="اسم المستخدم (بدون مسافات)" class="auth-input">
-                <input type="password" id="signup-pass" placeholder="كلمة المرور (6 خانات+)" class="auth-input">
-                <input type="password" id="signup-confirm-pass" placeholder="تأكيد كلمة المرور" class="auth-input">
-                <button class="btn-cyber glass-btn btn-primary" onclick="handleServerRegister()">تسجيل الحساب</button>
+                <input type="text" id="signup-username" placeholder="اسم المستخدم" class="auth-input">
+                <input type="password" id="signup-pass" placeholder="كلمة المرور" class="auth-input">
+                <button class="btn-primary-gold" onclick="handleServerRegister()">تسجيل الحساب</button>
                 <button class="btn-cancel" onclick="backToAuthMain()">⬅ رجوع</button>
             </div>
 
             <div id="form-login" class="auth-sub-form glass-card">
-                <div class="form-header"><span class="form-icon">🔓</span>
-                    <h3>تسجيل دخول المحققين</h3>
-                </div>
+                <div class="form-header"><h3>🔓 تسجيل الدخول</h3></div>
                 <input type="text" id="login-username" placeholder="اسم المستخدم" class="auth-input">
                 <input type="password" id="login-pass" placeholder="كلمة المرور" class="auth-input">
-                <button class="btn-cyber glass-btn btn-primary" onclick="handleServerLogin()">دخول السيرفر</button>
+                <button class="btn-primary-gold" onclick="handleServerLogin()">دخول</button>
                 <button class="btn-cancel" onclick="backToAuthMain()">⬅ رجوع</button>
             </div>
+
         </div>
     </div>
 
-    <!-- 🏠 الشاشة الرئيسية -->
-    <div id="main-menu" class="screen hidden">
-        <button id="profile-trigger-btn" class="btn-profile-float glass-btn" onclick="openProfileScreen()">👤</button>
-        <div class="content-wrapper">
-            <div class="title-wrapper">
-                <span class="classified-badge">🎖️ DETECTIVE BUREAU</span>
-                <h1 class="game-title glitch" data-text="MÉLANGEُ الظِّلِّ">MÉLANGEُ الظِّلِّ</h1>
-                <div class="title-underline"></div>
-                <p class="game-subtitle">مكتب التحقيقات الجنائية الرقمي</p>
-                <div id="detective-badge" class="glass-badge">جاري تحميل بيانات المحقق...</div>
-            </div>
-            <div class="menu-buttons">
-                <button id="btn-cases" class="btn-cyber glass-btn btn-large" onclick="showCasesMenu()"><span
-                        class="btn-icon">📂</span> القضايا العامة</button>
-                <button id="btn-archive" class="btn-cyber glass-btn btn-large" onclick="showArchiveMenu()"><span
-                        class="btn-icon">🗄️</span> أرشيفك الشخصي</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 👤 شاشة البروفايل -->
-    <div id="profile-sync-screen" class="screen hidden">
-        <button class="game-ui-btn top-left" onclick="switchScreen('profile-sync-screen', 'main-menu')">↩ رجوع</button>
-        <button class="game-ui-btn top-right" onclick="openSettingsModal()">⚙️ الإعدادات</button>
-
-        <div class="game-ui-container">
-            <div class="detective-id-card">
-                <div class="id-avatar-wrapper">
-                    <div class="id-avatar-ring"></div>
-                    <img id="profile-pic" src="https://via.placeholder.com/80/0a0f18/00f3ff?text=?" alt="Avatar"
-                        onclick="document.getElementById('file-input').click()">
-                    <input type="file" id="file-input" accept="image/*" style="display:none"
-                        onchange="uploadAvatar(this)">
-                    <div class="id-status-dot"></div>
-                </div>
-
-                <div class="id-info-wrapper">
-                    <div class="id-top-row">
-                        <h2 id="display-name" class="id-name">المحقق</h2>
-                        <button class="id-edit-btn" onclick="openEditNameModal()" title="تعديل الاسم">✏️</button>
-                        <span id="badge-rank" class="id-rank-badge">مخبر 🕵️‍♂️</span>
-                    </div>
-                    <span id="display-username" class="id-username">@guest</span>
-
-                    <div class="id-xp-row">
-                        <div class="id-xp-track">
-                            <div id="xp-bar-fill" class="id-xp-fill" style="width: 0%;"></div>
-                        </div>
-                        <span class="id-xp-text">
-                            <span id="display-level">Lv.1</span> | <span id="display-xp">0/100</span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ui-dashboard-grid">
-                <div class="ui-panel stats-panel">
-                    <h3 class="panel-header">📊 الإحصائيات</h3>
-                    <div class="stat-row">
-                        <span class="stat-icon">📂</span>
-                        <div class="stat-info">
-                            <span class="stat-label">محلولة</span>
-                            <strong id="stat-solved-cases" class="stat-val">0</strong>
-                        </div>
-                    </div>
-                    <div class="stat-row">
-                        <span class="stat-icon">🎯</span>
-                        <div class="stat-info">
-                            <span class="stat-label">الدقة</span>
-                            <strong id="stat-accuracy" class="stat-val">100%</strong>
-                        </div>
-                    </div>
-                    <div class="stat-row">
-                        <span class="stat-icon">💡</span>
-                        <div class="stat-info">
-                            <span class="stat-label">تلميحات</span>
-                            <strong id="stat-hints" class="stat-val">0</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="ui-panel cases-panel">
-                    <h3 class="panel-header">📁 تحقيقاتك النشطة</h3>
-                    <div id="profile-archive-list" class="active-cases-list"></div>
-                </div>
-            </div>
-
-            <div class="ui-footer-section">
-                <div class="footer-actions-row">
-                    <button id="btn-upgrade-guest" class="ui-action-btn primary" onclick="openUpgradeModal()"
-                        style="display: none;">
-                        🌐 ترقية الحساب
-                    </button>
-                    <button class="ui-action-btn danger" onclick="handleLogOut()">
-                        🚪 تسجيل الخروج
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 🎯 Modal ترقية الحساب -->
-    <div id="modal-upgrade" class="modal-overlay hidden">
-        <div class="glass-card modal-content modal-wide">
-            <button class="modal-close" onclick="closeModal('modal-upgrade')">✕</button>
-            <h3>🌐 ربط الحساب السحابي</h3>
-            <p class="modal-sub">احفظ تقدمك وقضاياك بشكل دائم!</p>
-
-            <div class="upgrade-inputs-grid">
-                <input type="text" id="sync-fullname" placeholder="الاسم الكامل" class="auth-input">
-                <input type="text" id="sync-username" placeholder="اسم المستخدم" class="auth-input">
-
-                <div class="password-wrapper">
-                    <input type="password" id="sync-pass" placeholder="كلمة المرور" class="auth-input">
-                    <button type="button" class="toggle-password-btn" onclick="toggleBothPasswords(this)">
-                        <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
-                            </path>
-                            <line x1="1" y1="1" x2="23" y2="23"></line>
-                        </svg>
-                        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="password-wrapper">
-                    <input type="password" id="sync-confirm-pass" placeholder="تأكيد كلمة المرور" class="auth-input">
-                    <button type="button" class="toggle-password-btn" onclick="toggleBothPasswords(this)">
-                        <svg class="eye-closed" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path
-                                d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24">
-                            </path>
-                            <line x1="1" y1="1" x2="23" y2="23"></line>
-                        </svg>
-                        <svg class="eye-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle cx="12" cy="12" r="3"></circle>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <div class="modal-actions">
-                <button class="btn-cyber btn-compact btn-primary" onclick="upgradeGuestToServer()">حفظ وربط الحساب
-                    💾</button>
-                <button class="btn-cyber btn-compact btn-danger" onclick="closeModal('modal-upgrade')">إلغاء</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 1. POPUP تعديل الاسم -->
-    <div id="modal-edit-name" class="modal-overlay hidden">
-        <div class="glass-card modal-content">
-            <button class="modal-close" onclick="closeModal('modal-edit-name')">✕</button>
-            <h3>✏️ تعديل اسم المحقق</h3>
-            <p class="modal-sub">اختر اسماً يليق بسجلك الإجرامي:</p>
-
-            <input type="text" id="input-new-name" class="auth-input" placeholder="أدخل الاسم الجديد..." maxlength="25">
-            <div id="name-success-msg" class="success-toast hidden">✓ تم تغيير الاسم بنجاح!</div>
-
-            <div class="modal-actions">
-                <button class="btn-cyber btn-compact" onclick="saveNewName()">حفظ 💾</button>
-                <button class="btn-cyber btn-danger btn-compact" onclick="closeModal('modal-edit-name')">إلغاء</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- 2. POPUP الإعدادات -->
-    <div id="modal-settings" class="modal-overlay hidden">
-        <div class="glass-card modal-content">
-            <button class="modal-close" onclick="closeModal('modal-settings')">✕</button>
-            <h3>⚙️ إعدادات النظام</h3>
-
-            <div class="settings-toggle-list">
-                <div class="toggle-row">
-                    <div class="toggle-info">
-                        <span class="setting-icon">🔊</span>
-                        <span>المؤثرات الصوتية</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="toggle-sound" onchange="toggleSound(this.checked)">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-
-                <div class="toggle-row">
-                    <div class="toggle-info">
-                        <span class="setting-icon">📳</span>
-                        <span>الاهتزاز (Vibration)</span>
-                    </div>
-                    <label class="switch">
-                        <input type="checkbox" id="toggle-vibration" onchange="toggleVibration(this.checked)">
-                        <span class="slider"></span>
-                    </label>
-                </div>
-            </div>
-
-            <button class="btn-cyber btn-compact" style="width:100%; margin-top:15px;"
-                onclick="closeModal('modal-settings')">تم 👍</button>
-        </div>
-    </div>
-
-    <!-- 📂 شاشة القضايا -->
-    <div id="cases-screen" class="screen hidden">
-        <button class="btn-back glass-btn" onclick="backToMenu('cases-screen')"><span>⬅</span> القائمة الرئيسية</button>
-        <div class="content-wrapper">
-            <h2 class="section-title"><span class="title-deco">◆</span> مَلَفَّاتُ القَضَايَا العَامَّةِ <span
-                    class="title-deco">◆</span></h2>
-            <div class="cases-slider" id="cases-slider-container"></div>
-        </div>
-    </div>
-
-    <!-- 🗄️ شاشة الأرشيف -->
-    <div id="archive-screen" class="screen hidden">
-        <button class="btn-back glass-btn" onclick="backToMenu('archive-screen')"><span>⬅</span> القائمة
-            الرئيسية</button>
-        <div class="content-wrapper">
-            <h2 class="section-title"><span class="title-deco">◆</span> أَرْشِيفُ قَضَايَاكَ الشَّغَالَّةِ <span
-                    class="title-deco">◆</span></h2>
-            <div class="cases-slider" id="archive-slider-container"></div>
-        </div>
-    </div>
-
-    <!-- 📋 شاشة تفاصيل القضية -->
-    <div id="case-details-screen" class="screen hidden">
-        <button class="btn-back glass-btn" onclick="backToArchive()"><span>⬅</span> رجوع</button>
-        <div class="content-wrapper">
-            <h2 id="detail-case-title" class="case-detail-title">اسم القضية</h2>
-            <div class="case-details-layout">
-                <div class="glass-card chapters-list" id="chapters-container"></div>
-                <div class="glass-card activation-box danger-border" id="activation-area">
-                    <h3>🔒 تفعيل الملف الكامل</h3>
-                    <p>تواصل مع الدعم الفني لتلقي كود التفعيل الأوفلاين فوراً:</p>
-                    <div class="whatsapp-number" id="support-whatsapp">+20 1X XXXX XXXX</div>
-                    <input type="text" id="activation-key-input" placeholder="أدخل كود التفعيل (8 أرقام)...">
-                    <button id="btn-submit-key" class="btn-cyber glass-btn btn-danger"
-                        onclick="checkActivationKey()">تفعيل وتحديث الملف</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- باقي الشاشات مخفية مؤقتاً لحد ما نخلص الشاشة دي -->
+    <div id="main-menu" class="screen hidden"></div>
+    <div id="profile-sync-screen" class="screen hidden"></div>
 
     <script type="module" src="js/app.js"></script>
 </body>
